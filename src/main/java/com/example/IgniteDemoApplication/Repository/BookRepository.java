@@ -32,4 +32,16 @@ public class BookRepository implements BookService {
                 )
         );
     }
+
+    @Override
+    public void save(Book book) {
+          jdbcTemplate.update("INSERT INTO BOOK(ID,NAME,PRICE) VALUES(?,?,?)", book.getId() ,book.getName(),
+                book.getPrice());
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        jdbcTemplate.update("DELETE BOOK WHERE ID = ?",id);
+
+    }
 }

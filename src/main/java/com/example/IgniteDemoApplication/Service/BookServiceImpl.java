@@ -23,4 +23,15 @@ public class BookServiceImpl implements BookService {
     public List<Book> findAll() {
         return bookRepository.findAll();
     }
+
+    @Override
+    public void save(Book book) {
+          this.bookRepository.save(book);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        bookRepository.deleteById(id);
+
+    }
 }

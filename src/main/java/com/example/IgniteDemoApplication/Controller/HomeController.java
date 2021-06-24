@@ -4,8 +4,7 @@ import com.example.IgniteDemoApplication.Model.Book;
 import com.example.IgniteDemoApplication.Service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,6 +26,22 @@ public class HomeController {
     public List<Book> getAllBooksName() {
         List<Book> allBook = bookService.findAll();
         return allBook;
+
+    }
+
+    @PostMapping("/addBook")
+    public String addBookName(@RequestBody Book book) {
+           bookService.save(book);
+           String response ="{\"success\":true,\"message\":\"Question successfully added\"}";
+           return response;
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public String deleteById(@PathVariable(value = "id") Long id) {
+        bookService.deleteById(id);
+        String response ="{\"success\":true,\"message\":\"Question successfully deleted\"}";
+        return response;
+
 
     }
 }
